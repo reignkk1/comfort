@@ -180,7 +180,10 @@ function createVolumeRange() {
 // 아이콘 버튼 생성함수
 function createIconButton(iconClassName) {
   const button = createElement("button", {
-    append: createElement("i", { class: iconClassName }),
+    append: [
+      createElement("i", { class: iconClassName }),
+      createElement("span"),
+    ],
   });
 
   console.log(button);

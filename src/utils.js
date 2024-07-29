@@ -7,7 +7,7 @@ export function createElement(tag, attr) {
       if (prop === "innerText") {
         element.innerText = value;
       } else if (prop === "append") {
-        element.append(value);
+        element.append(...value);
       } else {
         element.setAttribute(prop, value);
       }
