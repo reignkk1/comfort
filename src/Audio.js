@@ -24,6 +24,15 @@ const audioController = createElement("div", { class: "audio-controller" });
 const musicImg = createElement("img", { class: "music-img" });
 const musicTitle = createElement("span", { class: "music-title" });
 
+class AudioController {
+  constructor() {
+    this.Container = createElement("div", { class: "audio-controller" });
+    this.leftControls = createElement("div", { class: "left-controls" });
+  }
+
+  init() {}
+}
+
 // 실행순서
 // 컨트롤러 렌더링 -> 음악 랜덤으로 뽑기 -> 뮤직 플레이어 렌더링 -> 이벤트 리스너들 등록
 renderLeftController();
@@ -170,9 +179,12 @@ function createVolumeRange() {
 
 // 아이콘 버튼 생성함수
 function createIconButton(iconClassName) {
-  const button = createElement("button");
-  const icon = createElement("i", { class: iconClassName });
-  button.appendChild(icon);
+  const button = createElement("button", {
+    append: createElement("i", { class: iconClassName }),
+  });
+
+  console.log(button);
+
   return button;
 }
 
