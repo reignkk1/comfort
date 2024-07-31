@@ -7,26 +7,27 @@ const playList = await import("../playList.json", {
   },
 });
 
+// 상태를 객체로 만든 후 class 모듈 인자로 넣는다.
+// 클래스 모듈들은 각각 다른 파일로
+
 // 뮤직 플레이어 초기 상태
 let audio = new Audio();
 let playState = false;
 let mutedState = false;
 let volumeState;
 
-// HTML Elements
-
-// 상태를 객체 형태로 인자로 전달하는 건 어떨지?
-
 // 오디오 컨트롤러 element 모듈
 class AudioController {
   constructor() {
     this.container = createElement("div", { class: "audio-controller" });
     this.leftControls = createElement("div", { class: "left-controls" });
+
     this.playButton = createElement("button");
     this.playIcon = createElement("i", { class: getIconClassName("play") });
 
     this.mutedButton = createElement("button");
     this.mutedIcon = createElement("i", { class: getIconClassName("volume") });
+
     this.volumeRangeSpan = createElement("span");
     this.volumeRangeInput = createElement("input", {
       class: "volume-range",
@@ -38,14 +39,13 @@ class AudioController {
   }
 
   init() {
-    this.render();
-    this.addEventListener();
-
+    this.renderController();
+    this.addEventListenerController();
     volumeState = this.volumeRangeInput.value / 10;
     this.audioMutedFalse();
   }
 
-  addEventListener() {
+  addEventListenerController() {
     const { playButton, mutedButton, volumeRangeInput } = this;
 
     playButton.addEventListener("click", () => {
@@ -58,13 +58,13 @@ class AudioController {
       mutedState ? this.audioMutedTrue() : this.audioMutedFalse();
     });
 
-    this.volumeRangeInput.oninput = () => {
+    volumeRangeInput.oninput = () => {
       volumeState = audio.volume = volumeRangeInput.value / 10;
       audio.volume === 0 ? this.audioMutedTrue() : this.audioMutedFalse();
     };
   }
 
-  render() {
+  renderController() {
     const {
       leftControls,
       playButton,
@@ -101,7 +101,7 @@ class AudioController {
   }
   // 음소거 해제
   audioMutedFalse() {
-    this.mutedIcon.className = getIconClassName("volume");
+    this.mutedIcon.className = getIconClassName("volume", volumeState);
     audio.muted = false;
   }
 }
@@ -115,15 +115,19 @@ class AudioScreen extends AudioController {
   }
 
   init() {
-    const { audioScreen, backGroundImg, musicTitle, container } = this;
-    audioScreen.append(backGroundImg, musicTitle, container);
     super.init();
+    this.renderScreen();
     this.randomChoice();
-    this.addEventListener();
-    return audioScreen;
+    this.addEventListenerScreen();
+    return this.audioScreen;
   }
 
-  addEventListener() {
+  renderScreen() {
+    const { audioScreen, backGroundImg, musicTitle, container } = this;
+    audioScreen.append(backGroundImg, musicTitle, container);
+  }
+
+  addEventListenerScreen() {
     this.backGroundImg.addEventListener("click", () => {
       playState = !playState;
       if (playState) {
