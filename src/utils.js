@@ -18,7 +18,7 @@ export function createElement(tag, attr) {
 }
 
 // 아이콘 ClassName 리턴함수
-export function getIconClassName(icon) {
+export function getIconClassName(icon, volume) {
   let className;
 
   if (icon === "pause") {
@@ -28,7 +28,7 @@ export function getIconClassName(icon) {
   } else if (icon === "muted") {
     className = "fas fa-volume-mute fa-lg";
   } else if (icon === "volume") {
-    if (volumeState > 0.5) {
+    if (volume > 0.5) {
       className = "fas fa-volume-up fa-lg";
     } else {
       className = "fas fa-volume-down fa-lg";
