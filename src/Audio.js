@@ -16,6 +16,10 @@ let playState = false;
 let mutedState = false;
 let volumeState;
 
+class asdf {
+  constructor() {}
+}
+
 // 오디오 컨트롤러 element 모듈
 class AudioController {
   constructor() {
