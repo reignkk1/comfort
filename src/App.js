@@ -1,11 +1,11 @@
 import { createElement } from "./utils.js";
-import commentContainer from "./Comments.js";
-import audioScreen from "./Audio.js";
+import CommentContainer from "./Comment";
+import AudioScreanContainer from "./Audio";
 import "./reset.css";
 import "./styles.css";
 
 const app = createElement("main", { class: "main-content" });
 
-app.append(audioScreen, commentContainer);
+app.append(AudioScreanContainer, CommentContainer);
 
 export default app;

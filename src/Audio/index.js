@@ -1,7 +1,7 @@
-import { createElement, getIconClassName } from "./utils.js";
+import { createElement, getIconClassName } from "./../utils";
 
 //플레이 리스트 데이터 가져오기
-const playList = await import("../playList.json", {
+const playList = await import("../../playList.json", {
   with: {
     type: "json",
   },
@@ -15,10 +15,6 @@ let audio = new Audio();
 let playState = false;
 let mutedState = false;
 let volumeState;
-
-class asdf {
-  constructor() {}
-}
 
 // 오디오 컨트롤러 element 모듈
 class AudioController {
