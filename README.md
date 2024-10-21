@@ -1,4 +1,4 @@
-# Comfort Radio
+# Comfort Music
 
 <a target='_blank' href='https://reignkk1.github.io/comfort' width='400px'>[🌍 배포 링크]</a>
 
